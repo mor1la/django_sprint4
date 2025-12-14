@@ -150,3 +150,7 @@ media/
 
 sent_emails/
 
+# Django static
+/static/
+/static-dev/
+/html/
