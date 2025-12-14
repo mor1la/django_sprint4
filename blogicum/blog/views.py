@@ -18,6 +18,7 @@ POSTS_PER_PAGE = 10
 def _base_posts_queryset():
     return Post.objects.select_related('author', 'category', 'location')
 
+
 def get_published_posts(qs=None):
     qs = qs or _base_posts_queryset()
     return qs.filter(
@@ -104,7 +105,6 @@ def profile(request, username):
 
     if request.user != profile_user:
         posts = get_published_posts(posts)
-
 
     paginator = Paginator(posts, POSTS_PER_PAGE)
     page_number = request.GET.get('page')
