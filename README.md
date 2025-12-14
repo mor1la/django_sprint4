@@ -10,7 +10,7 @@
 ## Структура проекта
 
 После клонирования репозитория структура проекта выглядит следующим образом:
-
+```
 Dev/
  └── django_sprint4/
      ├── .vscode/            Служебная папка редактора (опционально)
@@ -32,61 +32,64 @@ Dev/
      ├── README.md
      ├── requirements.txt
      └── setup.cfg
-
+```
 ---
 
 ## Установка и запуск проекта
 
 ### Клонирование репозитория
 
+```
 git clone <URL_репозитория>  
 cd django_sprint4
-
+```
 ---
 
 ### Создание виртуального окружения
-
+```
 Linux / macOS:  
 python3 -m venv venv  
-
+```
+```
 Windows:  
 python -m venv venv
-
+```
 ---
 
 ### Активация виртуального окружения
-
+```
 Linux / macOS:  
 source venv/bin/activate  
-
+```
+```
 Windows:  
 source venv/Scripts/activate  
-
+```
 ---
 
 ### Обновление pip
-
+```
 python -m pip install --upgrade pip
-
+```
 ---
 
 ### Установка зависимостей
-
+```
 pip install -r requirements.txt
-
+```
 ---
 
 ### Применение миграций
-
+```
 cd blogicum  
 python manage.py migrate
-
+```
 ---
 
 ### Запуск проекта
-
+```
 python manage.py runserver  
-
+```
 Проект будет доступен по адресу: http://127.0.0.1:8000/
 
 ---
@@ -94,9 +97,6 @@ python manage.py runserver
 ## Дополнительно
 
 ### Запуск тестов
-
+```
 pytest
-
-### Загрузка тестовых данных (опционально)
-
-python manage.py loaddata db.json
+```
