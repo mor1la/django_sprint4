@@ -18,7 +18,7 @@ POSTS_PER_PAGE = 10
 def _base_posts_queryset():
     return Post.objects.select_related('author', 'category', 'location')
 
-
+# отдельная функция фильтрации опубликованных постов
 def get_published_posts(qs=None):
     qs = qs or _base_posts_queryset()
     return qs.filter(
