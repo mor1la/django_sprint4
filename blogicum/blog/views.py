@@ -18,6 +18,7 @@ POSTS_PER_PAGE = 10
 def _base_posts_queryset():
     return Post.objects.select_related('author', 'category', 'location')
 
+
 # отдельная функция фильтрации опубликованных постов
 def get_published_posts(qs=None):
     qs = qs or _base_posts_queryset()
@@ -32,7 +33,7 @@ def index(request):
     post_list = (
         get_published_posts()
         .annotate(comment_count=Count('comments'))
-        .order_by('-pub_date')
+        .order_by(*Post._meta.ordering)
     )
 
     paginator = Paginator(post_list, POSTS_PER_PAGE)
@@ -81,7 +82,7 @@ def category_posts(request, category_slug):
     post_list = (
         get_published_posts(_base_posts_queryset().filter(category=category))
         .annotate(comment_count=Count('comments'))
-        .order_by('-pub_date')
+        .order_by(*Post._meta.ordering)
     )
 
     paginator = Paginator(post_list, POSTS_PER_PAGE)
@@ -100,7 +101,7 @@ def profile(request, username):
         _base_posts_queryset()
         .filter(author=profile_user)
         .annotate(comment_count=Count('comments'))
-        .order_by('-pub_date')
+        .order_by(*Post._meta.ordering)
     )
 
     if request.user != profile_user:
@@ -238,5 +239,8 @@ def registration(request):
             return redirect('login')
     else:
         form = UserCreationForm()
-    return render(request, 'registration/registration_form.html',
-                  {'form': form})
+    return render(
+        request,
+        'registration/registration_form.html',
+        {'form': form},
+    )

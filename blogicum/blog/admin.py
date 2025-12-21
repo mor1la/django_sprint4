@@ -31,9 +31,9 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('category', 'location', 'is_published')
     search_fields = ('title', 'text')
 
+
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('text', 'post', 'author', 'created_at')
     search_fields = ('text',)
     list_filter = ('created_at',)
-
